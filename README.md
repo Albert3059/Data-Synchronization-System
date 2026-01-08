@@ -32,6 +32,16 @@ To solve this, I leveraged AWS DataSync to seamlessly sync on-premise file share
 ## **Architecture Diagram**
 
 
+![Data Synchronization System Architecture](Architecture%20Diagran/Data-Synchronization-System_Architecture.jpg)
+
+
+
+## **AWS Services Used**
+
+  - AWS DataSync : Automated and secure data transfer
+  - Amazon S3 : Centralized storage for HO reporting and analytics
+  - AWS IAM : Roles & permissions for secure access
+  - Amazon CloudWatch : Monitoring and logging
 ---
 
 ## **Step 1: Create an S3 Bucket for Head Office**
