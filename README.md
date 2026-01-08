@@ -44,6 +44,7 @@ To solve this, I leveraged AWS DataSync to seamlessly sync on-premise file share
   - Amazon CloudWatch : Monitoring and logging
 ---
 
+## **High-Level Steps**
 ## **Step 1: Create an S3 Bucket for Head Office**
 1. Go to the **AWS S3 Console**: [S3 Console](https://s3.console.aws.amazon.com/s3/home)
 2. Click **Create Bucket**.
@@ -57,11 +58,11 @@ To solve this, I leveraged AWS DataSync to seamlessly sync on-premise file share
    - Block **public access**.
 7. Click **Create Bucket**.
 
-✅ **Your S3 bucket is ready!**
+ **Your S3 bucket is ready!**
 
 
 
-## **Step 3: Deploy a DataSync Agent (For Branch Office)**
+## **Step 2: Deploy a DataSync Agent (For Branch Office)**
 Since your branch office data is stored locally, you need an **AWS DataSync Agent** to read & transfer files.
 
 
@@ -71,21 +72,21 @@ Since your branch office data is stored locally, you need an **AWS DataSync Agen
 2. Deploy it as a **VM** on **VMware**.
 3. Power on the VM and note the **IP Address** displayed.
 
-✅ **Your DataSync Agent is now running.**
+ **Your DataSync Agent is now running.**
 
 ---
 
-## **Step 4: Register the DataSync Agent in AWS**
+## **Step 3: Register the DataSync Agent in AWS**
 1. Go back to the **AWS DataSync Console**.
 2. Click **Create Agent** → Choose **On-Premises** **.
 3. Enter the **IP address** of your DataSync Agent.
 4. Click **Create Agent**.
 
-✅ **Your DataSync Agent is now registered!**
+ **Your DataSync Agent is now registered!**
 
 ---
 
-## **Step 5: Create the Source Location (Branch Office Shared Drive)**
+## **Step 4: Create the Source Location (Branch Office Shared Drive)**
 Define **where DataSync will pull files from**.
 
 1. In **AWS DataSync Console**, go to **Tasks** → Click **Create Task**.
@@ -104,11 +105,11 @@ Define **where DataSync will pull files from**.
 
 
 
-✅ **Your Source Location is now set up!**
+ **Your Source Location is now set up!**
 
 ---
 
-## **Step 6: Create the Destination Location (Amazon S3)**
+## **Step 5: Create the Destination Location (Amazon S3)**
 Define **where DataSync will send the files (Head Office S3 bucket).**
 
 1. Under **Destination Location**, click **Create Location**.
@@ -120,38 +121,46 @@ Define **where DataSync will send the files (Head Office S3 bucket).**
 4. Set the **S3 folder prefix** (e.g., `branch-1/`).
 5. Click **Create Location**.
 
-✅ **Your Destination Location is set!**
+ **Your Destination Location is set!**
 
 ---
 
-## **Step 7: Configure the DataSync Task**
+## **Step 6: Configure the DataSync Task**
 1. Go back to **Create Task**.
 2. Select the **Source Location** (branch shared drive).
 3. Select the **Destination Location** (S3 bucket).
 4. **Task Settings:**
-   - Enable **"Transfer only changed files"** ✅
-   - Enable **"Verify file integrity"** ✅
+   - Enable **"Transfer only changed files"** 
+   - Enable **"Verify file integrity"** 
    - Set **Bandwidth Limits** (optional).
 5. Click **Next**.
 
-✅ **Your DataSync Task is ready!**
+ **Your DataSync Task is ready!**
 
 ---
 
-## **Step 8: Schedule Automatic Syncing**
+## **Step 7: Schedule Automatic Syncing**
 1. Under **Schedule**, select:
    - **Every 15 minutes** (for near real-time sync).
    - **Hourly / Daily** (for lower bandwidth usage).
 2. Click **Create Task**.
 
-✅ **Your branch-to-HO sync is scheduled!**
+ **Your branch-to-HO sync is scheduled!**
 
 ---
 
-## **Step 9: Start Sync & Monitor Logs**
+## **Step 8: Start Sync & Monitor Logs**
 1. Select your **DataSync Task**.
 2. Click **Start Task Manually** (for testing).
 3. Check **Task Logs** in **AWS CloudWatch** to monitor progress.
 
-✅ **Your setup is complete!** 🎉
+ **Your setup is complete!**
+
+ ## **Lessons Learned**
+
+  - Implemented real-time, secure, and scalable data synchronization using AWS DataSync.
+  - Ensured offline resilience with automatic re-sync on reconnection.
+  - Learned best practices for IAM roles, security, and bandwidth optimization.
+  - Understood how to document a project clearly to help others replicate it.
+  - Gained hands-on experience solving a real-world business challenge with AWS.
 
