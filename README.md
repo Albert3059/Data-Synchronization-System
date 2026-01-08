@@ -3,6 +3,8 @@
 ## **Overview**
 This guide walks through setting up **AWS DataSync** to synchronize files from a **local shared folder (branch office storage)** to **Amazon S3 (Head Office central storage).**
 
+
+
 ---
 
 ## **Step 1: Create an S3 Bucket for Head Office**
