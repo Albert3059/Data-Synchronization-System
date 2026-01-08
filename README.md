@@ -45,7 +45,7 @@ To solve this, I leveraged AWS DataSync to seamlessly sync on-premise file share
 ---
 
 ## **High-Level Steps**
-## **Step 1: Create an S3 Bucket for Head Office**
+## Step 1: Create an S3 Bucket for Head Office
 1. Go to the **AWS S3 Console**: [S3 Console](https://s3.console.aws.amazon.com/s3/home)
 2. Click **Create Bucket**.
 3. Enter a **unique bucket name**:  
@@ -58,7 +58,7 @@ To solve this, I leveraged AWS DataSync to seamlessly sync on-premise file share
    - Block **public access**.
 7. Click **Create Bucket**.
 
- **Your S3 bucket is ready!**
+ **Done**
 
 
 
